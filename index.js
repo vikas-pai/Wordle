@@ -12,6 +12,9 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }   
+$('input[type="text"], textarea').each(function(){
+  $(this).attr('readonly','readonly');
+});
 var it=0;
 var arr=new Array(6);
 var arrind=0;
