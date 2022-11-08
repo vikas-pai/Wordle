@@ -1,11 +1,14 @@
 $(".numletters").click(function(){
-    console.log($(".numlettersoutput").html());
+    var numletters=$(".numlettersoutput").html();
+    localStorage.setItem("Letters",numletters);
   });
   $(".numtries").click(function(){
-    console.log($(".numtriesoutput").html());
+    var numtries=$(".numtriesoutput").html();
+    localStorage.setItem("Tries",numtries);
   });
   $('input[type="radio"]').on('click', function(e) {
-    console.log(e.currentTarget.value);
+    var radio=(e.currentTarget.value);
+    localStorage.setItem("Difficulty",radio);
 });
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");

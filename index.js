@@ -1,3 +1,5 @@
+import { words5,words6,words7,words8,words9,words10 } from "./words.js";
+console.log(localStorage.getItem("Letters"));
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
@@ -19,7 +21,7 @@ var it=0;
 var arr=new Array(6);
 var arrind=0;
 var row='a';
-word=""
+var word=""
  $("body").keydown(function(e) {
   if(e.key=='Backspace')
   {

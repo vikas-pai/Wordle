@@ -101,7 +101,9 @@ body{
   margin-top: 30px; 
   margin-left: auto; 
   margin-right: auto; 
-  width: 350px;
+  width: 700px;
+  padding-left: 350px;
+  padding-top: 50px;
 }
 .a,.b,.c,.d,.e,.f{
   width: 50px;
