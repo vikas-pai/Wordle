@@ -1,5 +1,17 @@
 import { words5,words6,words7,words8,words9,words10 } from "./words.js";
-console.log(localStorage.getItem("Letters"));
+var numletters=localStorage.getItem("Letters");
+console.log(typeof(numletters));
+var words=[];
+switch (numletters) {
+  case "5":words=words5;break;
+  case "6":words=words6;break;
+  case "7":words=words7;break;
+  case "8":words=words8;break;
+  case "9":words=words9;break;
+  case "10":words=words10;break;
+  default:words=words5;break;
+}
+console.log(words);
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];

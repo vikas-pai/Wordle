@@ -1,6 +1,12 @@
+$(".numletters").attr("value",localStorage.getItem("Letters")||5);
+$(".numlettersoutput").html(localStorage.getItem("Letters")||5);
+$(".numtries").attr("value",localStorage.getItem("Tries")||6);
+$(".numtriesoutput").html(localStorage.getItem("Tries")||6);
+$("#"+localStorage.getItem("Difficulty")).attr("checked",true);
+$(".numlettersoutput").html(localStorage.getItem("Letters")||5);
 $(".numletters").click(function(){
-    var numletters=$(".numlettersoutput").html();
-    localStorage.setItem("Letters",numletters);
+    var numletters1=$(".numlettersoutput").html();
+    localStorage.setItem("Letters",numletters1);
   });
   $(".numtries").click(function(){
     var numtries=$(".numtriesoutput").html();
