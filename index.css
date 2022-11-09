@@ -94,7 +94,7 @@ body{
   text-decoration: none;
   cursor: pointer;
 }
-.textbox{
+.wordlebox{
   position: absolute; 
   left: 0; 
   right: 0;
@@ -102,8 +102,6 @@ body{
   margin-left: auto; 
   margin-right: auto; 
   width: 700px;
-  padding-left: 350px;
-  padding-top: 50px;
 }
 .a,.b,.c,.d,.e,.f,.g,.h,.i,.j{
   width: 50px;
