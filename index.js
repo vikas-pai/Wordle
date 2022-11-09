@@ -1,5 +1,5 @@
 import { words5,words6,words7,words8,words9,words10 } from "./words.js";
-var numletters=localStorage.getItem("Letters");
+var numletters=sessionStorage.getItem("Letters");
 console.log(typeof(numletters));
 var words=[];
 switch (numletters) {
