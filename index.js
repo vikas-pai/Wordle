@@ -1,7 +1,7 @@
 import { words5,words6,words7,words8,words9,words10 } from "./words.js";
-var numletters=sessionStorage.getItem("Letters");
-var diff=sessionStorage.getItem("Difficulty");
-var numtries=sessionStorage.getItem("Tries");
+var numletters=sessionStorage.getItem("Letters")||5;
+var diff=sessionStorage.getItem("Difficulty")||"Easy";
+var numtries=sessionStorage.getItem("Tries")||6;
 var htmlString="";
 var row1='a';
 for (var i = 0; i < numtries; i++) {
