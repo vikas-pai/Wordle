@@ -68,12 +68,13 @@ $("body").keydown(function (e) {
     }
     var occurCurrWord1 = occurCurrWord.slice();
     //for the letters present in the correct position
-    
+    var flag = new Array(word.length).fill(0);
     for (var j = 0; j < word.length; j++) {
       if (word[j] == currWord[j]) {
         $("." + row + (j + 1)).css("background-color", "green");
         $("." + row + (j + 1)).css("color", "white");
         occurCurrWord1[currWord[j].charCodeAt(0) - 97]--;
+        flag[j]=1;
       }
 //for the letters present in the word but in wrong position
     }
@@ -86,6 +87,7 @@ $("body").keydown(function (e) {
             $("." + row + (j + 1)).css("background-color", "#FFC000");
             $("." + row + (j + 1)).css("color", "white");
             cow--;
+            flag[j]=1;
           }
         }
       }
@@ -94,8 +96,7 @@ $("body").keydown(function (e) {
     j = 0;
     //For the letters not present is the auto-generated word
     for (var j = 0; j < word.length; j++) {
-      var a = word[j].charCodeAt(0) - 97
-      if (occurCurrWord[a] == 0) {
+      if (!flag[j]) {
         $("." + row + (j + 1)).css("background-color", "grey");
         $("." + row + (j + 1)).css("color", "white");
       }
@@ -105,7 +106,10 @@ $("body").keydown(function (e) {
     arr[arrind] = word;
     arrind++;
     word = "";
-
+    for(var i=0;i<word.length;i++)
+    {
+        flag[i]=0;
+    }
   }
 });
 var modal = document.getElementById("myModal");
