@@ -1,0 +1,27 @@
+{
+  "name": "wordle",
+  "version": "1.0.0",
+  "description": "Wordle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikas-pai/Wordle.git"
+  },
+  "author": "Vikas Pai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikas-pai/Wordle/issues"
+  },
+  "homepage": "https://github.com/vikas-pai/Wordle#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4"
+  },
+  "dependencies": {
+    "vite": "^4.0.4"
+  }
+}

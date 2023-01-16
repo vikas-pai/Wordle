@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="settings.ico" type="image/x-icon">
     <link rel="stylesheet" href="../styles/settings.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Settings</title>
 </head>
 <body>
-    <div class="navbar">
+    <div class="navbar h-20">
         <span class="Wordle">Wordle</span>
         <div class="btn-grp">
-            <button type="button" class="btn home"onClick="location.href='../index.html'">Home</button>
-            <button type="button"class="btn settings"onClick="location.href='settings.html'">Settings</button>
-            <button id="myBtn" type="button"class="btn abt">About</button>
+            <button type="button" class="btn home bg-gradient-to-r from-blue-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500"onClick="location.href='../index.html'">Home</button>
+            <button type="button"class="btn settings bg-gradient-to-r from-blue-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500"onClick="location.href='settings.html'">Settings</button>
+            <button id="myBtn" type="button"class="btn abt bg-gradient-to-r from-blue-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">About</button>
             <div id="myModal" class="modal">
 
                 <!-- Modal content -->
@@ -30,12 +33,16 @@
     <br>
     <div class="set">
         <div class="letters">
-            Choose No of Letters: <input  style="accent-color: 	#ff9005" class ="numletters"type="range" value="5" min="5" max="10" oninput="this.nextElementSibling.value = this.value">
+            Choose No of Letters: <br><br><input  style="accent-color: 	#ff9005" 
+            class ="numletters w-60 h-2 mb-6 bg-gray-200 rounded-lg appearance- cursor-pointer range-sm dark:bg-gray-900"
+            type="range" value="5" min="5" max="10" oninput="this.nextElementSibling.value = this.value">
             <output class="numlettersoutput">5</output>
         </div>
         <br>
         <div class="tries">
-            Choose No of Tries:&nbsp;&nbsp;&nbsp; <input  style="accent-color: 	#ff9005"class ="numtries"type="range" value="6" min="6" max="10" oninput="this.nextElementSibling.value = this.value">
+            Choose No of Tries: <br><br><input style="accent-color:#ff9005"
+            class ="numtries w-60 h-2 mb-6 bg-gray-200 rounded-lg appearance- cursor-pointer range-sm dark:bg-gray-900"
+            type="range" value="6" min="6" max="10" oninput="this.nextElementSibling.value = this.value">
             <output class="numtriesoutput">6</output>
         </div>
     <br>
