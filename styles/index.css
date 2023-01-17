@@ -103,3 +103,22 @@ body{
   caret-color: transparent;
   font-weight: bold;
 }
+input[type='text']
+{
+  margin: 5px;
+}
+.animated {
+  animation: flip ease 0.5s;
+}
+
+@keyframes flip {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

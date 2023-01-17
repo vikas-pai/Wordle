@@ -65,6 +65,7 @@ $("body").keydown(function (e) {
     var occurWord = new Array(26).fill(0);
     for (var i = 0; i < word.length; i++) {
       occurWord[word[i].charCodeAt(0) - 97]++;
+
     }
     var occurCurrWord1 = occurCurrWord.slice();
     //for the letters present in the correct position
@@ -100,6 +101,10 @@ $("body").keydown(function (e) {
         $("." + row + (j + 1)).css("background-color", "grey");
         $("." + row + (j + 1)).css("color", "white");
       }
+    }
+    
+    for(var i=0;i<word.length;i++) {
+      $("."+row+(i+1)).addClass("animated");
     }
     it = 0;
     row = String.fromCharCode(row.charCodeAt() + 1)
