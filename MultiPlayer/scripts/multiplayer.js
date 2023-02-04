@@ -11,6 +11,26 @@ for (var i = 0; i < numtries; i++) {
   row1 = String.fromCharCode(row1.charCodeAt() + 1);
   htmlString = htmlString + "<br>";
 }
+var countDownDate = new Date().getTime() + (5 * 60 * 1000);
+
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  if(seconds<10){
+    document.getElementById("time").innerHTML="0"+minutes + ":0" + seconds;
+  }
+  else{
+    document.getElementById("time").innerHTML="0"+minutes + ":" + seconds;
+  }
+  
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("time").innerHTML="00:00";
+  }
+}, 1000);
 
 $(".wordlebox").html(htmlString)
 var words = [];
