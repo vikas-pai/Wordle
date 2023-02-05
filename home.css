@@ -1,0 +1,60 @@
+body{
+  margin: 0;
+  background-color: #F6E278;
+  font-family:'Press Start 2P';
+}
+.vertical {
+  height: 100%;
+  border-right: 5px solid red;
+  position: absolute;
+  right: 50%;
+  z-index: -1;
+}
+.hr{
+  border-style: dashed;
+  border-color: #000000;
+  border-top-width:  0;
+  margin-left: 0;
+}
+.btn {
+
+  border-radius: 10px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: 'Press Start 2P';
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  opacity: 100%;
+  font-size: xx-large;
+}
+
+
+.splay{
+  position: absolute;
+  top: 50%;
+  left: 10%;
+}
+.mplay{
+  position: absolute;
+  top: 50%;
+  right: 10%;
+}
+.btn-grp{
+ float:right;
+}
+.btn:active {
+  transform: translateY(4px);
+}
+.navbar{
+  padding: 15px;
+  background-color: #6dd47e;  
+}
+.Wordle{
+  text-align: center;
+  color: #BCF4F5;
+  height: 50px;
+  width: 50px;
+  font-size: 3rem;
+  padding: 2px;
+}
