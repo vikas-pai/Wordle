@@ -1,0 +1,98 @@
+body{
+  margin: 0;
+  background-color: #F6E278;
+  font-family:'Press Start 2P';
+}
+.vertical {
+  height: 100%;
+  border-right: 5px solid red;
+  position: absolute;
+  right: 50%;
+  z-index: -1;
+}
+.hr{
+  border-style: dashed;
+  border-color: #000000;
+  border-top-width:  0;
+  margin-left: 0;
+}
+.btn {
+
+  border-radius: 10px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: 'Press Start 2P';
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  opacity: 100%;
+}
+
+
+.splay{
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  font-size: xx-large;
+}
+.mplay{
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  font-size: xx-large;
+}
+.btn-grp{
+ float:right;
+}
+.btn:active {
+  transform: translateY(4px);
+}
+.navbar{
+  padding: 15px;
+  background-color: #6dd47e;  
+}
+.Wordle{
+  text-align: center;
+  color: #BCF4F5;
+  height: 50px;
+  width: 50px;
+  font-size: 3rem;
+  padding: 2px;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
