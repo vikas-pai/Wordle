@@ -1,5 +1,4 @@
 var str="";
-var name=prompt("Enter Your Name")||"Player";
 setInterval(()=>
 {
     document.getElementById("connect").innerHTML="Connecting"+str;
@@ -38,7 +37,7 @@ async function getJson2() {
       console.log(data);
       await sleep(2000);
     }while(data.result.GameId==null);
-    window.location.href = "http://localhost:5000/multiplayer";
+    window.location.href = "http://localhost:5000/multiplayer?gameId="+data.result.GameId+"&playerId="+playerId;
     return data;
   }
     

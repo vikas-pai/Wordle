@@ -35,6 +35,7 @@ app.get('/connecting',(req,res)=>{
 })
 import multi from './routes/routes.js'
 app.use('/api/v1/',multi );
+export var mgame=new Map();
 cron.schedule("*/5 * * * * *", function() {
     while(q.backIndex-q.frontIndex>=2)
     {
@@ -44,10 +45,9 @@ cron.schedule("*/5 * * * * *", function() {
         var roomjson=room.getJson();
         m.set(room.player1Id.toString(),roomjson);
         m.set(room.player2Id.toString(),roomjson);
-        
+        mgame.set(room.gameId.toString(),roomjson);
     }
-    // console.log(q.backIndex-q.frontIndex, q.items);
-    // console.log(m);
+    console.log(q.backIndex-q.frontIndex, q.items);
 });
 app.listen(port,function(){
     console.log(`App is listening on port ${port} `);

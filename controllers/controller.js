@@ -1,5 +1,6 @@
 import {createCustomError} from '../errors/customError.js';
 import { words5 } from '../public/words.js';
+import { mgame } from '../app.js';
 class Queue {
     constructor() {
         this.items = {}
@@ -96,8 +97,20 @@ export const match=async(req,res,next)=>{
     }
     catch (error) {
         next(error)
+    }   
+}
+export const getGameJson = async (req, res, next) => {
+    console.log("getting gameJson")
+
+    try 
+    {
+        const { id: id } = req.params;
+        var x=mgame.get(id);
+        res.status(200).json({
+            "result":x
+        })
+    } 
+    catch (error) {
+        next(error)
     }
-            
-        
-    
 }

@@ -54,7 +54,8 @@ $("body").keydown(function (e) {
     $("." + row + (it--)).val('');
     word = word.substring(0, word.length - 1);
   }
-  if (e.keyCode >= 65 && e.keyCode <= 122) {
+  if (e.keyCode >= 65 && e.keyCode <= 90) {
+    e.key = e.key.toLowerCase();
     if (it < numletters) {
       $("." + row + (++it)).val(e.key);
       word += e.key;
