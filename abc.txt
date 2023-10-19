@@ -1,0 +1,3 @@
+work pending
+get request for getting score
+put request after u complete a word

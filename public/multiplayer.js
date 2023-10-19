@@ -1,5 +1,6 @@
+import { youWon, youLost  ,createInputBox,initialize ,reset } from "./singleplayer.js";
 var numletters = 5;
-var diff = "Easy";
+// var diff = "Easy";
 var numtries = 6;
 if(window.performance.getEntriesByType("navigation")[0].type=='reload'){
   window.location.href = "http://localhost:5000/connecting";
@@ -10,50 +11,44 @@ let queryString = new URLSearchParams(paramString);
 var gameId=queryString.get("gameId");
 var playerId=queryString.get("playerId");
 console.log(gameId," ",playerId);
-async function getScore() {
+async function getGameJson() {
     var response = await fetch('http://localhost:5000/api/v1/getGameJson/'+gameId,{method: 'GET'});
     var data = await response.json()
     return data;
   }
-var gameJson=await getScore();
-console.log(gameJson.result.wordlist);
-
+var gameJson=await getGameJson();
+var newJson={};
+console.log(gameJson);
 var htmlString = "";
 var row1 = 'a';
 var score=0;
-for (var i = 0; i < numtries; i++) {
-  for (var j = 1; j <= numletters; j++) {
-    htmlString = htmlString + "<input type=\"text\" name=\"words\" class=\"" + row1 + " " + row1 + j + "\">";
-  }
-  row1 = String.fromCharCode(row1.charCodeAt() + 1);
-  htmlString = htmlString + "<br>";
+var playerScore=0;
+htmlString=createInputBox(6,5,'a');
+console.log(htmlString);
+function setTime(){
+  var countDownDate = new Date().getTime() + (5 * 60 * 1000);
+
+  var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    if(seconds<10){
+      document.getElementById("time").innerHTML="0"+minutes + ":0" + seconds;
+    }
+    else{
+      document.getElementById("time").innerHTML="0"+minutes + ":" + seconds;
+    }
+    
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("time").innerHTML="00:00";
+    }
+  }, 1000);
 }
-var countDownDate = new Date().getTime() + (5 * 60 * 1000);
-
-var x = setInterval(function() {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-  
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  if(seconds<10){
-    document.getElementById("time").innerHTML="0"+minutes + ":0" + seconds;
-  }
-  else{
-    document.getElementById("time").innerHTML="0"+minutes + ":" + seconds;
-  }
-  
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("time").innerHTML="00:00";
-  }
-}, 1000);
-
-$(".wordlebox").html(htmlString)
+setTime();
 var words = gameJson.result.wordlist;
-$('input[type="text"], textarea').each(function () {
-  $(this).attr('readonly', 'readonly');
-});
 var it = 0;
 var arr = new Array(numtries);
 var arrind = 0;
@@ -63,10 +58,7 @@ var presentWord = 0;
 var currWord=words[presentWord];
 console.log(currWord);
 var occurCurrWord = new Array(26).fill(0);
-for (var i = 0; i < currWord.length; i++) {
-  console.log(currWord[i].charCodeAt(0) - 97)
-  occurCurrWord[currWord[i].charCodeAt(0) - 97]++;
-}
+initialize();
 $("body").keydown(function (e) {
   if (e.key == 'Backspace') {
     $("." + row + it).css("border-color", "grey");
@@ -164,6 +156,17 @@ $("body").keydown(function (e) {
       {
         score+=6-(row.charCodeAt(0)-97)+5;
         console.log("Score is:",score);
+        if(playerId==gameJson.result.Player1)
+        {
+          gameJson.result.Player1Score=score;
+          newJson={"GameId":gameJson.result.GameId,"Player1Score":gameJson.result.Player1Score};
+        }
+        else
+        {
+          gameJson.result.Player2Score=score;
+          newJson={"GameId":gameJson.result.GameId,"Player2Score":gameJson.result.Player2Score};
+        }
+        console.log(gameJson);
       }
       $(".wordlebox").html(htmlString);
       row = 'a';
@@ -184,8 +187,27 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 } 
-// async function getScore() {
-//   var response = await fetch('http://localhost:5000/api/v1/getScore?gameId'+gameId+'&playerScore',{method: 'GET'});
-//   var data = await response.json()
-//   return data.id;
-// }
+console.log(gameJson);
+
+console.log(Object.keys(newJson)[1]); 
+//http://localhost:5000/multiplayer?gameId="+data.result.GameId+"&playerId="+playerId;
+async function getScore() {
+  if(playerId==gameJson.result.Player1)
+  {
+    newJson={"GameId":gameJson.result.GameId,"Player1Score":gameJson.result.Player1Score};
+  }
+  else
+  {
+    newJson={"GameId":gameJson.result.GameId,"Player2Score":gameJson.result.Player2Score};
+  }
+  console.log('http://localhost:5000/api/v1/getScore?gameId='+newJson.GameId+"&"+Object.keys(newJson)[1]+"="+newJson.Player1Score);
+  var response = await fetch('http://localhost:5000/api/v1/getScore?gameId='+newJson.GameId+"&"+Object.keys(newJson)[1]+"="+Object.values(newJson)[1],{method: 'POST'});
+  
+  var data = await response.json()
+  return data;
+}
+
+var setScore=setInterval(function(){
+  gameJson=getScore();
+  console.log(gameJson);
+},2000);

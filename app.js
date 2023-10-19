@@ -47,7 +47,8 @@ cron.schedule("*/5 * * * * *", function() {
         m.set(room.player2Id.toString(),roomjson);
         mgame.set(room.gameId.toString(),roomjson);
     }
-    console.log(q.backIndex-q.frontIndex, q.items);
+    // console.log(q.backIndex-q.frontIndex, q.items);
+    // console.log(m);
 });
 app.listen(port,function(){
     console.log(`App is listening on port ${port} `);

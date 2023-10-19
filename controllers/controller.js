@@ -114,3 +114,22 @@ export const getGameJson = async (req, res, next) => {
         next(error)
     }
 }
+export const getScore = async (req, res, next) => {
+    console.log("getting score")
+
+    try 
+    {
+        console.log(req.query)
+        var x=mgame.get(req.query.gameId.toString());
+        x[Object.keys(req.query)[1]]=Object.values(req.query)[1];
+        console.log(x);
+        mgame.set(req.query.gameId.toString(),x);
+        res.status(200).json({
+            "result":x
+        })
+    } 
+    catch (error) {
+        next(error)
+    }
+}
+//Object.keys(newJson)[1]

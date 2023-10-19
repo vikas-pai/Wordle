@@ -4,50 +4,79 @@ var diff = sessionStorage.getItem("Difficulty") || "Easy";
 var numtries = sessionStorage.getItem("Tries") || 6;
 var htmlString = "";
 var row1 = 'a';
-for (var i = 0; i < numtries; i++) {
-  for (var j = 1; j <= numletters; j++) {
-    htmlString = htmlString + "<input type=\"text\" name=\"words\" class=\"" + row1 + " " + row1 + j + "\">";
-  }
-  row1 = String.fromCharCode(row1.charCodeAt() + 1);
-  htmlString = htmlString + "<br>";
-}
-
-$(".wordlebox").html(htmlString)
 var words = [];
-switch (numletters) {
-  case "5": words = words5; break;
-  case "6": words = words6; break;
-  case "7": words = words7; break;
-  case "8": words = words8; break;
-  case "9": words = words9; break;
-  case "10": words = words10; break;
-  default: words = words5; break;
-}
 var currWord;
-switch (diff) {
-  case "Easy":
-    currWord = words[Math.floor(Math.random() * (3334 - 0) + 0)]; break;
-  case "Medium":
-    currWord = words[Math.floor(Math.random() * (6667 - 3334) + 3334)]; break;
-  case "Hard":
-    currWord = words[Math.floor(Math.random() * (10000 - 6667) + 6667)]; break;
-  default:
-    currWord = words[Math.floor(Math.random() * (3334 - 0) + 0)]; break;
-}
-console.log(currWord);
 var occurCurrWord = new Array(26).fill(0);
-for (var i = 0; i < currWord.length; i++) {
-  console.log(currWord[i].charCodeAt(0) - 97)
-  occurCurrWord[currWord[i].charCodeAt(0) - 97]++;
-}
-$('input[type="text"], textarea').each(function () {
-  $(this).attr('readonly', 'readonly');
-});
 var it = 0;
 var arr = new Array(numtries);
 var arrind = 0;
 var row = 'a';
 var word = ""
+
+function createInputBox(numtries, numletters,row1){
+  for (var i = 0; i < numtries; i++) {
+    for (var j = 1; j <= numletters; j++) {
+      htmlString = htmlString + "<input type=\"text\" name=\"words\" class=\"" + row1 + " " + row1 + j + "\">";
+    }
+    row1 = String.fromCharCode(row1.charCodeAt() + 1);
+    htmlString = htmlString + "<br>";
+  }
+  $('input[type="text"], textarea').each(function () {
+    $(this).attr('readonly', 'readonly');
+  });
+  return htmlString;
+}
+
+htmlString=createInputBox(numtries,numletters,row1);
+//console.log(htmlString);
+
+
+function createWord() { 
+  $(".wordlebox").html(htmlString)
+  switch (numletters) {
+    case "5": words = words5; break;
+    case "6": words = words6; break;
+    case "7": words = words7; break;
+    case "8": words = words8; break;
+    case "9": words = words9; break;
+    case "10": words = words10; break;
+    default: words = words5; break;
+  }
+  switch (diff) {
+    case "Easy":
+      currWord = words[Math.floor(Math.random() * (3334 - 0) + 0)]; break;
+    case "Medium":
+      currWord = words[Math.floor(Math.random() * (6667 - 3334) + 3334)]; break;
+    case "Hard":
+      currWord = words[Math.floor(Math.random() * (10000 - 6667) + 6667)]; break;
+    default:
+      currWord = words[Math.floor(Math.random() * (3334 - 0) + 0)]; break;
+  }
+}
+
+createWord();
+
+function initialize(){
+  for (var i = 0; i < currWord.length; i++) {
+    console.log(currWord[i].charCodeAt(0) - 97)
+    occurCurrWord[currWord[i].charCodeAt(0) - 97]++;
+  }
+}
+
+initialize();
+
+function reset(){
+  it = 0;
+  arr = new Array(numtries);
+  arrind = 0;
+  row = 'a';
+  word = ""
+  createWord();
+  initialize();
+}
+
+console.log(currWord);
+
 $("body").keydown(function (e) {
   if (e.key == 'Backspace') {
     $("." + row + it).css("border-color", "grey");
@@ -111,24 +140,51 @@ $("body").keydown(function (e) {
     row = String.fromCharCode(row.charCodeAt() + 1)
     arr[arrind] = word;
     arrind++;
-    word = "";
-    for(var i=0;i<word.length;i++)
+    console.log(word);
+    console.log(currWord);
+    if(currWord.toLowerCase()===word.toLowerCase())
     {
-        flag[i]=0;
+      console.log("You won");
+      youWon();
+      reset();
+      console.log(currWord);
     }
+    else if(numtries==row.charCodeAt(0) - 97&&currWord.toLowerCase()!=word.toLowerCase())
+    {
+      console.log("You lost");
+      youLost();
+      reset();
+      console.log(currWord);
+    }
+    word = "";
   }
 });
+
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 btn.onclick = function () {
   modal.style.display = "block";
 }
+
 span.onclick = function () {
   modal.style.display = "none";
 }
+
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 } 
+
+function youWon(){
+  $(".wordlebox").html(htmlString);
+  $(".result").html("You Won");
+}
+
+function  youLost(){
+  $(".wordlebox").html(htmlString);
+  $(".result").html("You Lost");
+}
+
+export { youWon, youLost , createInputBox ,createWord ,initialize ,reset};
